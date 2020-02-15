@@ -158,6 +158,12 @@
           <artifactId>jetty-maven-plugin</artifactId>
           <version>8.0.0.M1</version>
         </plugin>
+        
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.6-SNAPSHOT</version>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
