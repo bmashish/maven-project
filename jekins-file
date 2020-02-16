@@ -10,13 +10,21 @@ pipeline
 		    
 		    steps{
 			
-			git branch: 'master', url: 'https://github.com/bmashish/maven-project.git'
+			branch : 'master,'git: "https://github.com/bmashish/maven-project.git"
 			}       
 		  
 		  
 		  
 		  }
-  
+         stage('validate code')
+		 {
+		   steps{
+		   withMaven(jdk: 'localjdk', maven: 'localmaven') 
+		   {
+           sh 'mvn validate'
+           }
+		   }
+		 }
   }
 
 }
