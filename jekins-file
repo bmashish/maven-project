@@ -10,7 +10,7 @@ pipeline
 		    
 		    steps{
 			
-			branch : master,'git: "https://github.com/bmashish/maven-project.git"
+			branch : 'master,'git: "https://github.com/bmashish/maven-project.git"
 			}       
 		  
 		  
