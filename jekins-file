@@ -19,10 +19,13 @@ pipeline
          stage('validate code')
 		 {
 		   steps{
-		   withMaven(jdk: 'localjdk', maven: 'localmaven') 
+		   withSonarQubeEnv(credentialsId: 'mysonar') 
 		   {
-           sh 'mvn validate'
+                      withMaven(jdk: 'localjdk', maven: 'localmaven') 
+		   {
+           sh 'mvn install sonar:sonar'
            }
+	   }
 		   }
 		 }
   }
