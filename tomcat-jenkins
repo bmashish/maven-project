@@ -1,0 +1,41 @@
+pipeline
+{
+  agent any
+  
+  stages{
+  
+          stage('scm checkout')
+		  
+		  {
+		    
+		    steps{
+			
+			git branch: 'master', url: 'https://github.com/bmashish/maven-project.git'
+			}       
+		  
+		  
+		  
+		  }
+         stage('validate code')
+		 {
+		   steps{
+		         withMaven(jdk: 'localjdk', maven: 'localmaven') 
+		       {
+               sh 'mvn install sonar:sonar'
+           }
+	      }
+		   
+		 }
+     stage('delpoy to tomcat')
+     {
+        steps
+             {
+                sshagent (credentials: ['deploy-dev']) {
+                sh 'scp -o StrictHostKeyChecking=no */target/*.war ec2-user@172.31.9.207:/var/lib/tomcat/webapps'
+        
+             }
+     }
+     
+  }
+
+}
