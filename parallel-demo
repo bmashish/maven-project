@@ -5,18 +5,17 @@ pipeline{
 		         stages{
 		
 		                    stage('scm checkout'){
+							steps {
 							git 'https://github.com/bmashish/maven-project.git'
-							
 							}
-		
-		          
+							}
 				stage('parallel stage'){
 	                           			parallel{			
 							stage('compile'){
 							    steps{
 								withMaven(jdk: 'localjdk', maven: 'localmaven')
 								{
-							    sh 'mvn compile'
+							    sh 'mvn copmile'
 							}
 							}
 							}
@@ -26,7 +25,7 @@ pipeline{
 							    steps{
 							    withMaven(jdk: 'localjdk', maven: 'localmaven')
 								{
-							    sh 'mv test'
+							    sh 'mvn test'
 							}
 							}
 							}
