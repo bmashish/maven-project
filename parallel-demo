@@ -2,20 +2,33 @@ pipeline{
 
         agent any
 		
-		stages(parallel deployment){
+		         stages{
 		
-		          parallel {
-				  
-                            stage('deploy vm'){
+		                    stage('scm checkout'){
+							git 'https://github.com/bmashish/maven-project.git'
 							
+							}
+		
+		          
+				stage('parallel stage'){
+	                           						
+							stage('compile'){
 							    steps{
-							    sh 'echo vm'
+								withMaven(jdk: 'localjdk', maven: 'localmaven')
+								{
+							    sh 'mvn compile'
 							}
 							}
- 				            stage('deploy vm1'){
+							}
+							
+ 				            stage('test'){
 							
 							    steps{
-							    sh 'echo vm1'
+							    withMaven(jdk: 'localjdk', maven: 'localmaven')
+								{
+							    sh 'mvn compile'
+							}
+							}
 							}
 							}
 				  }
