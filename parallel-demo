@@ -15,7 +15,7 @@ pipeline{
 	                           			parallel{			
 							stage('compile'){
 							    steps{
-								withMaven(jdk: 'localjdk', maven: 'localmaven')
+								withMave(jdk: 'localjdk', maven: 'localmaven')
 								{
 							    sh 'mvn compile'
 							}
