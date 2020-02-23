@@ -11,7 +11,7 @@ pipeline{
 		
 		          
 				stage('parallel stage'){
-	                           						
+	                           			parallel{			
 							stage('compile'){
 							    steps{
 								withMaven(jdk: 'localjdk', maven: 'localmaven')
@@ -26,7 +26,7 @@ pipeline{
 							    steps{
 							    withMaven(jdk: 'localjdk', maven: 'localmaven')
 								{
-							    sh 'mvn compile'
+							    sh 'mvn test'
 							}
 							}
 							}
@@ -35,5 +35,7 @@ pipeline{
 		
 		}
 
+
+}
 
 }
