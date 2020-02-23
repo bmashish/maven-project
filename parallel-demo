@@ -1,0 +1,26 @@
+pipeline{
+
+        agent any
+		
+		stages(parallel deployment){
+		
+		          parallel {
+				  
+                            stage('deploy vm'){
+							
+							    steps{
+							    sh 'echo vm'
+							}
+							}
+ 				            stage('deploy vm1'){
+							
+							    steps{
+							    sh 'echo vm1'
+							}
+							}
+				  }
+		
+		}
+
+
+}
