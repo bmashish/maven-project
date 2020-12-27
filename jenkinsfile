@@ -1,0 +1,25 @@
+pipeline
+agent any
+stages
+{
+  stage('stage-1')
+  {
+    steps
+    {sh 'echo downloading code'}
+
+  }
+
+  stage('stage-2')
+  {
+    steps
+    {sh 'echo build code'}
+
+  }
+  stage('stage-3')
+  {
+    steps
+    {sh 'echo code deploy'}
+
+  }
+
+}
