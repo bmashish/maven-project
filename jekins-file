@@ -1,33 +1,25 @@
 pipeline
+agent any
+stages
 {
-  agent any
-  
-  stages{
-  
-          stage('scm checkout')
-		  
-		  {
-		    
-		    steps{
-			
-			git branch: 'master', url: 'https://github.com/bmashish/maven-project.git'
-			}       
-		  
-		  
-		  
-		  }
-         stage('validate code')
-		 {
-		   steps{
-		   withSonarQubeEnv('mysonar') 
-		   {
-                      withMaven(jdk: 'localjdk', maven: 'localmaven') 
-		   {
-           sh 'mvn install sonar:sonar'
-           }
-	   }
-		   }
-		 }
+  stage('stage-1')
+  {
+    steps
+    {sh 'echo downloading code'}
+
+  }
+
+  stage('stage-2')
+  {
+    steps
+    {sh 'echo build code'}
+
+  }
+  stage('stage-3')
+  {
+    steps
+    {sh 'echo code deploy'}
+
   }
 
 }
