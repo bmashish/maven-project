@@ -1,6 +1,7 @@
 pipeline
 {
   agent any
+
   stages
   {
    stage("scm checkout")
@@ -25,6 +26,18 @@ pipeline
      steps
      {
      sh 'docker build -t ashikuma/mytomcat:0.0.1 .'
+     }
+   }
+   stage('docker push image')
+   {
+     steps
+     {
+     withCredentials([string(credentialsId: 'mydocker', variable: 'mydocker')]) 
+       {
+         sh "docker login -u ashikuma -p $(mydocker)"
+         sh 'docker push ashikuma/mytomcat:0.01'
+         sh 'docker rmi ashikuma/mytomcat:0.01'
+       }
      }
    }
   }
