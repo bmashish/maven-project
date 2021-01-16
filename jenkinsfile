@@ -34,7 +34,7 @@ pipeline
      {
      withCredentials([string(credentialsId: 'mydocker', variable: 'mydocker')]) 
        {
-         sh "docker login -u ashikuma -p $(mydocker)"
+         sh "docker login -u ashikuma -p ${mydocker}"
          sh 'docker push ashikuma/mytomcat:0.01'
          sh 'docker rmi ashikuma/mytomcat:0.01'
        }
