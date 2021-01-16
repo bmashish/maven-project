@@ -1,25 +1,32 @@
 pipeline
-agent any
-stages
 {
-  stage('stage-1')
+  agent any
+
+  stages
   {
-    steps
-    {sh 'echo downloading code'}
-
+   stage("scm checkout")
+   {
+     steps
+     {
+       git branch: 'master', url: 'https://github.com/bmashish/maven-project'
+     }
+   }
+   stage("build stage")
+   {
+     steps
+     {
+     withMaven(jdk: 'jdk', maven: 'localmaven') 
+     {
+       sh 'mvn package'
+     }
+     }
+   }
+   stage('docker image creation')
+   {
+     steps
+     {
+     sh 'docker build -t ashikuma/mytomcat:0.1 .'
+     }
+   }
   }
-
-  stage('stage-2')
-  {
-    steps
-    {sh 'echo build code'}
-
-  }
-  stage('stage-3')
-  {
-    steps
-    {sh 'echo code deploy'}
-
-  }
-
 }
