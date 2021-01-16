@@ -46,9 +46,10 @@ pipeline
       {
        step
        {
-       def dckerRun='docker run -itd -p 90010:8080 --name my-tomcate-app ashikuma/mytomcat:0.0.2'
+       
        sshagent(['deploy-to-dev-docker']) 
-       {
+       {  
+          def dckerRun='docker run -itd -p 90010:8080 --name my-tomcate-app ashikuma/mytomcat:0.0.2'
           sh "ssh -o StrictHostKeyChecking=no ec2-user@172.31.46.1 ${dckerRun}"
        }
        }
