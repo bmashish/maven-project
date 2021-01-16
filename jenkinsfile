@@ -25,7 +25,7 @@ pipeline
    {
      steps
      {
-     sh 'docker build -t ashikuma/mytomcat:0.1 .'
+     sh 'docker build -t ashikuma/mytomcat:0.0.1 .'
      }
    }
   }
